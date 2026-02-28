@@ -1,0 +1,28 @@
+[project]
+name = "icloud-paths"
+version = "0.1.1"
+description = "Accessing iCloud paths"
+readme = "README.md"
+authors = [
+    { name = "Tom Koelman", email = "tkoelman@xs4all.nl" }
+]
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+license = "MIT-0"
+license-files = [ "LICENSE" ]
+
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
