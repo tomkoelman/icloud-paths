@@ -18,6 +18,10 @@ classifiers = [
 license = "MIT-0"
 license-files = [ "LICENSE" ]
 
+[project.urls]
+repository = "https://github.com/tomkoelman/icloud-paths.git"
+issues = "https://github.com/tomkoelman/icloud-paths/issues"
+
 [build-system]
 requires = ["uv_build>=0.10.7,<0.11.0"]
 build-backend = "uv_build"
