@@ -1,4 +1,4 @@
-# iCloud Paths
+# icloud_paths
 
 A Python module for accessing common iCloud paths on macOS and Windows.
 
