@@ -1,12 +1,13 @@
-import pytest
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
+import pytest
 
 from icloud_paths import (
-    get_icloud_drive_path,
     get_icloud_desktop_path,
     get_icloud_documents_path,
     get_icloud_downloads_path,
+    get_icloud_drive_path,
     get_icloud_photos_path,
     is_icloud_available,
 )
@@ -15,11 +16,13 @@ from icloud_paths import (
 class TestiCloudDirectories:
     def test_get_icloud_drive_path_not_supported_os(self):
         """Test that get_icloud_drive_path raises OSError on unsupported systems."""
-        with patch("platform.system", return_value="Linux"):
-            with pytest.raises(
+        with (
+            patch("platform.system", return_value="Linux"),
+            pytest.raises(
                 OSError, match="iCloud Drive is only available on macOS and Windows"
-            ):
-                get_icloud_drive_path()
+            ),
+        ):
+            get_icloud_drive_path()
 
     @patch("platform.system", return_value="Darwin")
     def test_get_icloud_drive_path_exists_macos(self, mock_system):
@@ -99,9 +102,8 @@ class TestiCloudDirectories:
         ],
     )
     def test_get_icloud_subdirectory_path_not_supported_os(self, func):
-        with patch("platform.system", return_value="Linux"):
-            with pytest.raises(OSError):
-                func()
+        with patch("platform.system", return_value="Linux"), pytest.raises(OSError):
+            func()
 
     @patch("icloud_paths.get_icloud_drive_path")
     def test_get_icloud_desktop_path_no_drive(self, mock_get_drive):
@@ -111,11 +113,13 @@ class TestiCloudDirectories:
         assert result is None
 
     def test_get_icloud_photos_path_not_supported_os(self):
-        with patch("platform.system", return_value="Linux"):
-            with pytest.raises(
+        with (
+            patch("platform.system", return_value="Linux"),
+            pytest.raises(
                 OSError, match="iCloud Photos is only available on macOS and Windows"
-            ):
-                get_icloud_photos_path()
+            ),
+        ):
+            get_icloud_photos_path()
 
     @patch("platform.system", return_value="Darwin")
     def test_get_icloud_photos_path_exists_macos(self, mock_system):
